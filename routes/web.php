@@ -59,7 +59,7 @@ $url = route('profile');
 // Generating Redirects...
 return redirect()->route('profile'); */
 
-//Pertemuan2 - Praktikum12
+//Pertemuan2 - Praktikum2
 
 Route::get("/hello", [WelcomeController::class,"hello"]);
 /*
@@ -84,3 +84,17 @@ Route::resource('photos', PhotoController::class)->only([
 Route::resource('photos', PhotoController::class)->except([
     'create', 'store', 'update', 'destroy'
 ]);
+
+//Pertemuan2 - Praktikum3
+
+/* Route::get('/greeting', function () {
+    return view('hello', ['name' => 'Rakha']);
+}); */
+
+/* Route::get('/greeting', function () {
+    return view('blog.hello', ['name' => 'Rakha']);
+});
+ */
+
+Route::get('/greeting', [WelcomeController::class, 
+'greeting']);
