@@ -70,12 +70,17 @@ Route::get('/articles/{id}', [PageController::class,"articles"]);
 
     //Langkah 7
 
-Route::get('/', [HomeController::class,"index"]);
+// Route::get('/', [HomeController::class,"index"]);
 Route::get('/about', [AboutController::class,"about"]);
 Route::get('/articles/{id}', [ArticleController::class,"articles"]);
 
 
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\POSHomeController;
+use App\Http\Controllers\POSProductsController;
+use App\Http\Controllers\POSTransactionController;
+use App\Http\Controllers\POSUserProfileController;
+
 Route::resource('photos', PhotoController::class);
 
 Route::resource('photos', PhotoController::class)->only([
@@ -98,3 +103,18 @@ Route::resource('photos', PhotoController::class)->except([
 
 Route::get('/greeting', [WelcomeController::class, 
 'greeting']);
+
+//Pertemuan2 - Soal Praktikum
+
+Route::get('/', [POSHomeController::class, 'home']);
+
+Route::prefix('category')->group(function () {
+    Route::get('/food-beverage', [POSProductsController::class, 'foodBeverage']);
+    Route::get('/beauty-health', [POSProductsController::class, 'beautyHealth']);
+    Route::get('/home-care', [POSProductsController::class, 'homeCare']);
+    Route::get('/baby-kid', [POSProductsController::class, 'babyKid']);
+});
+
+Route::get('/user/{id}/name/{name}', [POSUserProfileController::class, 'user']);
+
+Route::get('/transaction', [POSTransactionController::class, 'transaction']);
